@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer planetId;
+    private String planetId;
 
     @NotBlank(message = "{field.required}")
     @Size(max = 200, message = "{wrong.size}")
@@ -32,4 +32,7 @@ public class Planet {
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{field.required}")
     private PlanetTerrainEnum planetTerrainEnum;
+
+    @NotNull(message = "{field.required}")
+    private Integer numberOfMovieAppearances;
 }

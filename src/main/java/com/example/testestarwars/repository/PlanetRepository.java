@@ -4,17 +4,19 @@ import com.example.testestarwars.dto.PlanetDto;
 import com.example.testestarwars.model.Planet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface PlanetRepository extends JpaRepository<Planet, Integer> {
-    PlanetDto findPlanetByPlanetId(Planet planet);
+    @Query("{planetId:'?0'}")
+    Planet findPlanetByPlanetId(String planetId);
 
-    PlanetDto findPlanetsByName(String name);
+    Planet findPlanetsByName(String name);
 
-    @Query(value = "SELECT * FROM planet", nativeQuery = true)
-    List<PlanetDto> getAllPlanets();
+//    @Query(value = "SELECT * FROM planet", nativeQuery = true)
+//    List<PlanetDto> getAllPlanets();
+
+    List<Planet> findAll();
 }

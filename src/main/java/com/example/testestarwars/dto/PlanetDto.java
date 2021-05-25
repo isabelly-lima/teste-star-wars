@@ -5,8 +5,9 @@ import lombok.Data;
 
 @Data
 public class PlanetDto {
-    private Integer planetId;
+    private String planetId;
     private String name;
     private String climate;
     private PlanetTerrainEnum planetTerrainEnum;
+    private Integer numberOfMovieAppearances;
 }
