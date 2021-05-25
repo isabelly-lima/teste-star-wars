@@ -39,12 +39,12 @@ public class PlanetService {
 
     @Transactional
     public void createPlanet(PlanetInputDto planetInputDto) {
-        final RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<SwApiResponseDto> entity = restTemplate
-                .getForEntity("https://swapi.dev/api/planets", SwApiResponseDto.class);
+        ResponseEntity<Object> entity = restTemplate
+                .getForEntity("https://swapi.dev/api/planets", Object.class);
 
-        SwApiResponseDto swApiResponseDto = entity.getBody();
+        SwApiResponseDto swApiResponseDto = (SwApiResponseDto) entity.getBody();
 
         List<SwApiResponseDto> swApiResponseDtoList = new ArrayList<>();
 
@@ -53,10 +53,10 @@ public class PlanetService {
         String next = swApiResponseDto.getNext() != null ? swApiResponseDto.getNext() : null;
 
         while (next != null && !next.isEmpty()) {
-            ResponseEntity<SwApiResponseDto> nextSwApiDto = restTemplate
-                    .getForEntity(next, SwApiResponseDto.class);
+            ResponseEntity<Object> nextSwApiDto = restTemplate
+                    .getForEntity(next, Object.class);
 
-            SwApiResponseDto nextSwApiResponseDto = entity.getBody();
+            SwApiResponseDto nextSwApiResponseDto = (SwApiResponseDto) entity.getBody();
 
             if (nextSwApiResponseDto.getNext() != null && !nextSwApiResponseDto.getNext().isEmpty()) {
                 next = nextSwApiResponseDto.getNext();
