@@ -1,7 +1,5 @@
 package com.example.testestarwars.service;
 
-import com.example.testestarwars.dto.ApiPlanetInfoDto;
-import com.example.testestarwars.dto.PlanetDto;
 import com.example.testestarwars.dto.PlanetInputDto;
 import com.example.testestarwars.dto.SwApiResponseDto;
 import com.example.testestarwars.model.Planet;
