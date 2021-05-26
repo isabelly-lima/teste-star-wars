@@ -15,7 +15,10 @@ import java.util.Date;
 public class CustomizedFieldNotFoundExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public final ResponseEntity<ExceptionResponse> handlerArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getFieldErrors().get(0).getDefaultMessage(),
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(),
+                "O body da requisição que você mandou está faltando campos obrigatórios " +
+                        "ou os campos estão enviando valores vazios. Verifique se você está mandando os campos " +
+                        "name, terrain e climate, e se você está mandando esses campos com valores válidos.",
                 request.getDescription(false), HttpStatus.BAD_REQUEST.getReasonPhrase());
 
         return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);

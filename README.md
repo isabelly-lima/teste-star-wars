@@ -8,7 +8,7 @@ Projeto feito com intuito de criar uma api para criar, listar e deletar planetas
     - Lista o planeta que possui o id passado no path do request.
  - Get: http://localhost:8080/planet/{planetName}/name/search
     - Lista o planeta que possui o nome passado no path do request.
- - Post: http://localhost:8080/planet
+ - Post: http://localhost:8080/planet/create
     - Cria um planeta de acordo com os campos passados.
     - Exemplo de body do request
       ```json

@@ -65,7 +65,7 @@ public class PlanetController {
         return planetDto;
     }
 
-    @PostMapping
+    @PostMapping(value ="/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createPlanet(@Valid @RequestBody PlanetInputDto planetInputDto) {
         planetService.createPlanet(planetInputDto);
