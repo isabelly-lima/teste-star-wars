@@ -7,12 +7,12 @@ import com.example.testestarwars.dto.SwApiResponseDto;
 import com.example.testestarwars.model.Planet;
 import com.example.testestarwars.repository.PlanetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +20,6 @@ public class PlanetService {
 
     @Autowired
     private PlanetRepository planetRepository;
-
 
     @Transactional(readOnly = true)
     public List<Planet> getPlanets() {
@@ -41,44 +40,33 @@ public class PlanetService {
     public void createPlanet(PlanetInputDto planetInputDto) {
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<Object> entity = restTemplate
-                .getForEntity("https://swapi.dev/api/planets", Object.class);
+        String firstLetter = planetInputDto.getName().substring(0,1);
 
-        SwApiResponseDto swApiResponseDto = (SwApiResponseDto) entity.getBody();
+        String firstLetterUpperCase = firstLetter.toUpperCase();
 
-        List<SwApiResponseDto> swApiResponseDtoList = new ArrayList<>();
+        String restOfPlanetName = planetInputDto.getName().substring(1);
 
-        swApiResponseDtoList.add(swApiResponseDto);
+        String planetName = firstLetterUpperCase + restOfPlanetName;
 
-        String next = swApiResponseDto.getNext() != null ? swApiResponseDto.getNext() : null;
+        ResponseEntity<SwApiResponseDto> entity = restTemplate
+                .exchange("https://swapi.dev/api/planets/?search="+planetName,
+                        HttpMethod.GET,
+                        null, SwApiResponseDto.class);
 
-        while (next != null && !next.isEmpty()) {
-            ResponseEntity<Object> nextSwApiDto = restTemplate
-                    .getForEntity(next, Object.class);
-
-            SwApiResponseDto nextSwApiResponseDto = (SwApiResponseDto) entity.getBody();
-
-            if (nextSwApiResponseDto.getNext() != null && !nextSwApiResponseDto.getNext().isEmpty()) {
-                next = nextSwApiResponseDto.getNext();
-            }
-
-            swApiResponseDtoList.add(nextSwApiResponseDto);
-        }
+        SwApiResponseDto swApiResponseDto = entity.getBody();
 
         int numberOfFilmAppearances = 0;
 
-        for (SwApiResponseDto apiResponseDto : swApiResponseDtoList) {
-            for (ApiPlanetInfoDto result : apiResponseDto.getResults()) {
-                if (planetInputDto.getName().equalsIgnoreCase(result.getName())) {
-                    numberOfFilmAppearances = result.getFilms().size();
-                }
+        if (!swApiResponseDto.getResults().isEmpty()) {
+            if (swApiResponseDto.getResults().get(0).getFilms().size() > 0) {
+                numberOfFilmAppearances = swApiResponseDto.getResults().get(0).getFilms().size();
             }
         }
 
         Planet planet = new Planet();
         planet.setClimate(planetInputDto.getClimate());
-        planet.setName(planetInputDto.getName());
-        planet.setPlanetTerrainEnum(planetInputDto.getPlanetTerrainEnum());
+        planet.setName(planetName);
+        planet.setTerrain(planetInputDto.getTerrain());
         planet.setNumberOfMovieAppearances(numberOfFilmAppearances);
         planetRepository.save(planet);
     }

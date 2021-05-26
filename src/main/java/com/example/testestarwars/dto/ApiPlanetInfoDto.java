@@ -1,11 +1,12 @@
 package com.example.testestarwars.dto;
 
-import com.example.testestarwars.model.PlanetTerrainEnum;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
 @Data
+@Getter
 public class ApiPlanetInfoDto {
     private String name;
     private String rotationPeriod;
@@ -13,7 +14,7 @@ public class ApiPlanetInfoDto {
     private String diameter;
     private String climate;
     private String gravity;
-    private PlanetTerrainEnum terrain;
+    private String terrain;
     private String surfaceWater;
     private String population;
     private List<String> residents;
@@ -21,4 +22,8 @@ public class ApiPlanetInfoDto {
     private String created;
     private String edited;
     private String url;
+
+    public List<String> getFilms() {
+        return this.films;
+    }
 }

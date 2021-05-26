@@ -34,14 +34,14 @@ public class PlanetController {
         return planetConverter.toPlanetDto(planets);
     }
 
-    @GetMapping("/{planetId}")
-    public PlanetDto listPlanetById(@PathVariable("planetId") String planetId) {
+    @GetMapping(value ="/{planetId}/id/search")
+    public PlanetDto listPlanetById(@PathVariable("planetId") String planetId) throws Exception {
         Planet planetById = planetService.getPlanetById(planetId);
         return planetConverter.toPlanetDto(planetById);
     }
 
-    @GetMapping("/{name}")
-    public PlanetDto listPlanetByName(@PathVariable("name") String name) {
+    @GetMapping(value ="/{name}/name/search")
+    public PlanetDto listPlanetByName(@PathVariable("name") String name) throws Exception {
         Planet planetByName = planetService.getPlanetByName(name);
         return planetConverter.toPlanetDto(planetByName);
     }
@@ -52,9 +52,9 @@ public class PlanetController {
         planetService.createPlanet(planetInputDto);
     }
 
-    @DeleteMapping("/{planetId}")
+    @DeleteMapping(value ="/{planetId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePlanet(@PathVariable("planetId") String planetId) {
+    public void deletePlanet(@PathVariable("planetId") String planetId) throws Exception {
         planetService.deletePlanetById(planetId);
     }
 }

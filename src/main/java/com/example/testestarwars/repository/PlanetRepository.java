@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PlanetRepository extends MongoRepository<Planet, Integer> {
-    @Query("{planetId:'?0'}")
+    @Query(value = "{'_id':'?0'}")
     Planet findPlanetByPlanetId(String planetId);
 
     Planet findPlanetsByName(String name);

@@ -1,10 +1,6 @@
 package com.example.testestarwars.dto;
 
-import com.example.testestarwars.model.PlanetTerrainEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -12,6 +8,8 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class PlanetInputDto {
     @NotEmpty
     private String name;
@@ -20,5 +18,17 @@ public class PlanetInputDto {
     private String climate;
 
     @NotEmpty
-    private PlanetTerrainEnum planetTerrainEnum;
+    private String terrain;
+
+    public String getClimate() {
+        return this.climate;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getTerrain () {
+        return this.terrain;
+    }
 }

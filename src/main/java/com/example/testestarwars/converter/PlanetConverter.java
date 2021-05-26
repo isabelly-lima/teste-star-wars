@@ -17,6 +17,7 @@ public interface PlanetConverter {
     @Named("toPlanetDto")
     PlanetDto toPlanetDto(Planet planet);
 
+    @Named("toPlanetDtoList")
     @IterableMapping(qualifiedByName = "toPlanetDto")
     List<PlanetDto> toPlanetDto(List<Planet> planets);
 }
