@@ -36,40 +36,4 @@ public class Planet implements Serializable {
 
     @NotNull(message = "{field.required}")
     private Integer numberOfMovieAppearances;
-
-    public void setClimate(String climate) {
-        this.climate = climate;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTerrain(String terrain) {
-        this.terrain = terrain;
-    }
-
-    public void setNumberOfMovieAppearances(Integer numberOfMovieAppearances) {
-        this.numberOfMovieAppearances = numberOfMovieAppearances;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getTerrain() {
-        return this.terrain;
-    }
-
-    public String getClimate() {
-        return this.climate;
-    }
-
-    public Integer getNumberOfMovieAppearances() {
-        return this.numberOfMovieAppearances;
-    }
 }

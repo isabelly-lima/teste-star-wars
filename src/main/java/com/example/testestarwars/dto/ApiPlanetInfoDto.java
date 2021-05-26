@@ -2,11 +2,13 @@ package com.example.testestarwars.dto;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Data
 @Getter
+@Setter
 public class ApiPlanetInfoDto {
     private String name;
     private String rotationPeriod;
@@ -22,8 +24,4 @@ public class ApiPlanetInfoDto {
     private String created;
     private String edited;
     private String url;
-
-    public List<String> getFilms() {
-        return this.films;
-    }
 }

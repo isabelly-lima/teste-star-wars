@@ -1,7 +1,12 @@
 package com.example.testestarwars.exceptions;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class ExceptionResponse {
     private Date timestamp;
     private String message;
@@ -14,21 +19,5 @@ public class ExceptionResponse {
         this.message = message;
         this.request = request;
         this.httpCodeMessage=httpCodeMessage;
-    }
-
-    public String getHttpCodeMessage() {
-        return httpCodeMessage;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public String getMessage() {
-        return this.message;
-    }
-
-    public String getRequest() {
-        return this.request;
     }
 }

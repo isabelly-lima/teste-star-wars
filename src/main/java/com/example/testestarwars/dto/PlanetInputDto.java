@@ -13,30 +13,18 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class PlanetInputDto {
-    @NotEmpty
-    @NotNull
-    @NotBlank
+    @NotEmpty(message = "O campo name não pode ser enviado vazio!")
+    @NotNull(message = "O campo name não pode ser enviado nulo!")
+    @NotBlank (message = "O campo name não pode ser enviado vazio!")
     private String name;
 
-    @NotEmpty
-    @NotNull
-    @NotBlank
+    @NotEmpty(message = "O campo climate não pode ser enviado vazio!")
+    @NotNull(message = "O campo climate não pode ser enviado nulo!")
+    @NotBlank (message = "O campo climate não pode ser enviado vazio!")
     private String climate;
 
-    @NotEmpty
-    @NotNull
-    @NotBlank
+    @NotEmpty(message = "O campo terrain não pode ser enviado vazio!")
+    @NotNull(message = "O campo terrain não pode ser enviado nulo!")
+    @NotBlank (message = "O campo terrain não pode ser enviado vazio!")
     private String terrain;
-
-    public String getClimate() {
-        return this.climate;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getTerrain () {
-        return this.terrain;
-    }
 }

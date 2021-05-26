@@ -14,8 +14,4 @@ public class SwApiResponseDto {
     private String next;
     private String previous;
     private List<ApiPlanetInfoDto> results;
-
-    public List<ApiPlanetInfoDto> getResults() {
-        return this.results;
-    }
 }
