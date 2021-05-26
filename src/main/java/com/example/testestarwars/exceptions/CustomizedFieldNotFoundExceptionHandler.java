@@ -15,7 +15,7 @@ import java.util.Date;
 public class CustomizedFieldNotFoundExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public final ResponseEntity<ExceptionResponse> handlerArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getFieldErrors().get(0).getDefaultMessage(),
                 request.getDescription(false), HttpStatus.BAD_REQUEST.getReasonPhrase());
 
         return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);
