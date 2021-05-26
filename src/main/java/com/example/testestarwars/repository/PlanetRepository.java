@@ -1,6 +1,5 @@
 package com.example.testestarwars.repository;
 
-import com.example.testestarwars.dto.PlanetDto;
 import com.example.testestarwars.model.Planet;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -15,9 +14,6 @@ public interface PlanetRepository extends MongoRepository<Planet, Integer> {
     Planet findPlanetByPlanetId(String planetId);
 
     Planet findPlanetsByName(String name);
-
-//    @Query(value = "SELECT * FROM planet", nativeQuery = true)
-//    List<PlanetDto> getAllPlanets();
 
     List<Planet> findAll();
 }
