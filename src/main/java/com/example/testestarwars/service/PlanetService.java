@@ -33,7 +33,15 @@ public class PlanetService {
 
     @Transactional(readOnly = true)
     public Planet getPlanetByName(String name) {
-        return planetRepository.findPlanetsByName(name);
+        String firstLetter = name.substring(0,1);
+
+        String firstLetterUpperCase = firstLetter.toUpperCase();
+
+        String restOfPlanetName = name.substring(1);
+
+        String planetName = firstLetterUpperCase + restOfPlanetName;
+
+        return planetRepository.findPlanetsByName(planetName);
     }
 
     @Transactional

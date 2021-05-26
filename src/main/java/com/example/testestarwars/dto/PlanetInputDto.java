@@ -2,7 +2,9 @@ package com.example.testestarwars.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -12,12 +14,18 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class PlanetInputDto {
     @NotEmpty
+    @NotNull
+    @NotBlank
     private String name;
 
     @NotEmpty
+    @NotNull
+    @NotBlank
     private String climate;
 
     @NotEmpty
+    @NotNull
+    @NotBlank
     private String terrain;
 
     public String getClimate() {
