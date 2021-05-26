@@ -20,3 +20,9 @@ Projeto feito com intuito de criar uma api para criar, listar e deletar planetas
       ```
  - Delete: http://localhost:8080/planet/{planetId}
     - Deleta um planeta que possui o id passado no path do request.
+   
+# Tecnologias utilizadas
+   - Java 8
+   - MongoDb
+   - Hibernate
+   - SpringBoot
