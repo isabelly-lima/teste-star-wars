@@ -2,6 +2,8 @@ package com.example.testestarwars.service;
 
 import com.example.testestarwars.dto.PlanetInputDto;
 import com.example.testestarwars.dto.SwApiResponseDto;
+import com.example.testestarwars.exceptions.PlanetAlreadyOnDatabaseException;
+import com.example.testestarwars.exceptions.PlanetNotFoundException;
 import com.example.testestarwars.model.Planet;
 import com.example.testestarwars.repository.PlanetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PlanetService {
@@ -54,6 +57,13 @@ public class PlanetService {
 
         String planetName = firstLetterUpperCase + restOfPlanetName;
 
+        Planet planetsByName = planetRepository.findPlanetsByName(planetName);
+
+        if (!Objects.isNull(planetsByName)) {
+            throw new PlanetAlreadyOnDatabaseException("O planeta que você está tentando inserir já se encontra no " +
+                    "banco de dados! Por favor, tente inserir o planeta novamente modificando os dados enviados.");
+        }
+
         ResponseEntity<SwApiResponseDto> entity = restTemplate
                 .exchange("https://swapi.dev/api/planets/?search="+planetName,
                         HttpMethod.GET,
@@ -80,6 +90,10 @@ public class PlanetService {
     @Transactional
     public void deletePlanetById(String planetId) {
         Planet planet = planetRepository.findPlanetByPlanetId(planetId);
+        if (Objects.isNull(planet)) {
+            throw new PlanetNotFoundException("O planeta que você está tentando deletar não se encontra no banco de dados. " +
+                    "Por favor, insira um id presente no banco de dados!");
+        }
         planetRepository.delete(planet);
     }
 }
