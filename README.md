@@ -1,5 +1,5 @@
 # teste-star-wars
-Projeto feito com intuito de criar uma api para criar, listar e deletar planetas do universo star wars.
+Projeto feito com intuito de criar uma api para inserir, listar, buscar e deletar planetas do universo star wars.
 
 # Endpoints criados
  - Get: http://localhost:8080/planet/all
