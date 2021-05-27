@@ -49,7 +49,7 @@ public class PlanetController {
         PlanetDto planetDto = planetConverter.toPlanetDto(planetById);
         if (Objects.isNull(planetDto)) {
             throw new PlanetNotFoundException("O planeta buscado não se encontra no banco de dados. " +
-                    "Por favor, insira um id presente no banco de dados!");
+                    "Por favor, insira um id válido!");
         }
         return planetDto;
     }
@@ -60,7 +60,7 @@ public class PlanetController {
         PlanetDto planetDto = planetConverter.toPlanetDto(planetByName);
         if (Objects.isNull(planetDto)) {
             throw new PlanetNotFoundException("O planeta buscado não se encontra no banco de dados. " +
-                    "Por favor, insira um nome presente no banco de dados!");
+                    "Por favor, insira um nome válido!");
         }
         return planetDto;
     }

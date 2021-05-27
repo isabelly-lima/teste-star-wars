@@ -22,18 +22,18 @@ public class Planet implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @NotBlank(message = "{field.required}")
-    @Size(max = 200, message = "{wrong.size}")
+    @NotBlank
+    @Size(max = 200)
     private String name;
 
-    @NotBlank(message = "{field.required}")
-    @Size(max = 200, message = "{wrong.size}")
+    @NotBlank
+    @Size(max = 200)
     private String climate;
 
-    @NotNull(message = "Campo obrigatório. Por favor, insira o terreno do planeta.")
-    @Size(max = 200, message = "{wrong.size}")
+    @NotNull
+    @Size(max = 200)
     private String terrain;
 
-    @NotNull(message = "{field.required}")
+    @NotNull
     private Integer numberOfMovieAppearances;
 }

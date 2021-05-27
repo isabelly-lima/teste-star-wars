@@ -38,7 +38,7 @@ public class PlanetService {
 
         String firstLetterUpperCase = firstLetter.toUpperCase();
 
-        String restOfPlanetName = name.substring(1);
+        String restOfPlanetName = name.substring(1).toLowerCase();
 
         String planetName = firstLetterUpperCase + restOfPlanetName;
 
@@ -53,7 +53,7 @@ public class PlanetService {
 
         String firstLetterUpperCase = firstLetter.toUpperCase();
 
-        String restOfPlanetName = planetInputDto.getName().substring(1);
+        String restOfPlanetName = planetInputDto.getName().substring(1).toLowerCase();
 
         String planetName = firstLetterUpperCase + restOfPlanetName;
 
@@ -92,7 +92,7 @@ public class PlanetService {
         Planet planet = planetRepository.findPlanetByPlanetId(planetId);
         if (Objects.isNull(planet)) {
             throw new PlanetNotFoundException("O planeta que você está tentando deletar não se encontra no banco de dados. " +
-                    "Por favor, insira um id presente no banco de dados!");
+                    "Por favor, insira um id válido!");
         }
         planetRepository.delete(planet);
     }
